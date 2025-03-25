@@ -24,14 +24,25 @@
 
 .tab-list {
     display: flex;
+    text-align: center;
     flex-direction: column;
     width: auto;
     height: 100%;
-    padding: 50px;
+    padding: 20px;
     background-color: #F2F3F7;
     border-radius: 30px;
     align-items: center;
     justify-content: flex-start;
+
+    .profesion {
+        font-size: 12px;
+        width: 120px;
+    }
+
+    .information {
+        padding: 0;
+        margin: 0;
+    }
 
     p {
         color: black;
@@ -48,7 +59,6 @@
 }
 
 .navigation {
-    padding-top: 40px;
     margin: 0
 }
 
