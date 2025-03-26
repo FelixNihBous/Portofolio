@@ -7,6 +7,9 @@
     align-items: center;
 }
 
+
+
+
 .wrapper {
     background-color: white;
     width: 90%;
@@ -75,4 +78,162 @@
     h2 {
         max-width: 350px;
     }
+}
+
+/* Mobile Navigation Button */
+.nav-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001; /* Ensure it's above other elements */
+  }
+  
+  .nav-toggle .line {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 3px 0;
+    transition: 0.4s;
+  }
+  
+  .nav-toggle.open .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .nav-toggle.open .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.open .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+  }
+  
+  .nav-toggle .line {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 3px 0;
+    transition: 0.4s;
+  }
+  
+  .nav-toggle.open .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .nav-toggle.open .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.open .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  
+  .nav-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+  }
+  
+  .nav-toggle .line {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 3px 0;
+    transition: 0.4s;
+  }
+  
+  .nav-toggle.open .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .nav-toggle.open .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.open .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+  
+    .wrapper {
+      flex-direction: column;
+      position: relative;
+    }
+  
+    .tab-list {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .tab-list.active {
+      transform: translateY(0);
+    }
+  
+    .navigation {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+  
+    .information {
+      align-items: flex-start;
+      line-height: normal;
+    }
+  
+    .content {
+        min-height: auto;
+        /* Remove margin-top: 100vh; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: absolute; /* Add absolute positioning */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        width: 100%; /* Take full width */
+        height: 100%; /* Take full height */
+        z-index: 999; /* Ensure it's above other elements */
+      }
+    
+      .content h2 {
+        max-width: 90%;
+      }
 }
