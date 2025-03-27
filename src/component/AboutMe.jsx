@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import '../css/AboutMe.css';
 import Skills from './Skills';
 import Education from './Education';
+import ProjectList from './ProjectList'
+import Description from './Description';
 import Contact from './Contact';
 
 function AboutMe() {
@@ -20,18 +22,15 @@ function AboutMe() {
     console.log("renderContent called, activeTab:", getActiveTab.current());
     switch (getActiveTab.current()) {
       case 'about':
-        return (
-          <div>
-            <h1>A Simple Portfolio</h1>
-            <h2>Hello My Name Is Felix Tjong, I am currently learning and improving my front-end development abilities.</h2>
-          </div>
-        );
+        return <Description />;
       case 'skills':
         return <Skills />;
       case 'education':
         return <Education />;
       case 'contact':
         return <Contact />;
+      case 'projects':
+        return <ProjectList />
       default:
         return null;
     }
@@ -105,6 +104,7 @@ function AboutMe() {
             <p onClick={() => handleNavLinkClick('skills')} ref={(el) => (navigationRefs.current[1] = el)}>Skills</p>
             <p onClick={() => handleNavLinkClick('education')} ref={(el) => (navigationRefs.current[2] = el)}>Education</p>
             <p onClick={() => handleNavLinkClick('contact')} ref={(el) => (navigationRefs.current[3] = el)}>Contact</p>
+            <p onClick={() => handleNavLinkClick('projects')} ref={(el) => (navigationRefs.current[4] = el)}>Project Lists</p>
           </div>
         </div>
 

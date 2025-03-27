@@ -1,0 +1,38 @@
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 200px;
+}
+
+.contact-container {
+    text-align: center;
+}
+
+.contact-info-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    height: auto;
+    border-radius: 20px;
+    width: 220px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added box shadow */
+}
+
+.contact-image {
+    width: 50px;
+    height: 50px;
+}
+
+.contact-email {
+    margin: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .contact-wrapper {
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}
