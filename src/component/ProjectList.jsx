@@ -14,9 +14,10 @@ function ProjectList() {
 
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
+    let ctx;
 
-    const staggerSlides = () => {
-      if (swiperInstance) {
+    if (swiperInstance) {
+      ctx = gsap.context(() => {
         gsap.fromTo(
           swiperInstance.slides,
           { opacity: 0, y: 50 },
@@ -24,25 +25,23 @@ function ProjectList() {
             opacity: 1,
             y: 0,
             duration: 0.5,
-            stagger: 0.1, // Stagger the animation
+            stagger: 0.1,
           }
         );
-      }
-    };
-
-    if (swiperInstance) {
-      staggerSlides(); // Initial stagger
-
-      swiperInstance.on('slideChangeTransitionEnd', () => {
-        staggerSlides(); // Stagger on slide change
       });
+
+      // Cleanup function
+      return () => {
+        ctx && ctx.revert();
+      };
     }
   }, []);
 
   return (
     <>
+    <h2>This is some of my project that i had finished.</h2>
       <Swiper
-        ref={swiperRef} // Add ref to Swiper
+        ref={swiperRef}
         slidesPerView={3}
         spaceBetween={30}
         pagination={{

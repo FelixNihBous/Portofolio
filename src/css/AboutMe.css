@@ -38,8 +38,9 @@
     justify-content: flex-start;
 
     .profesion {
-        font-size: 12px;
+        font-size: 10px;
         width: 120px;
+        color: black;
     }
 
     .information {
@@ -74,10 +75,6 @@
     /* justify-content: center; */
     align-content: center;
     text-align: left;
-
-    h2 {
-        max-width: 350px;
-    }
 }
 
 /* Mobile Navigation Button */
@@ -232,7 +229,4 @@
         z-index: 999;
       }
     
-      .content h2 {
-        max-width: 90%;
-      }
 }

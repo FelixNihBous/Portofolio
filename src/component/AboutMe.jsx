@@ -6,10 +6,12 @@ import Education from './Education';
 import ProjectList from './ProjectList'
 import Description from './Description';
 import Contact from './Contact';
+import { TypeAnimation } from 'react-type-animation';
+
 
 function AboutMe() {
   const [activeTab, setActiveTab] = useState('about');
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(true);
   const activeTabRef = useRef(activeTab);
   const getActiveTab = useRef(() => activeTabRef.current);
 
@@ -85,19 +87,32 @@ function AboutMe() {
   return (
     <div className='container'>
       <div className='wrapper'>
-        {/* Mobile Navigation Button */}
         <div className="nav-toggle" onClick={toggleNav}>
           <div className={`line ${isNavOpen ? 'open' : ''}`}></div>
           <div className={`line ${isNavOpen ? 'open' : ''}`}></div>
           <div className={`line ${isNavOpen ? 'open' : ''}`}></div>
         </div>
 
-        {/* Tab List (Header) */}
         <div className={`tab-list ${isNavOpen ? 'active' : ''}`} key={isNavOpen ? 'open' : 'closed'}>
           <div className='information'>
             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Placeholder" />
             <p>Felix Tjong</p>
-            <p style={{ fontStyle: 'italic' }} className='profesion'>front-end developer</p>
+            <TypeAnimation
+              sequence={[
+                // Same substring at the start will only be typed once, initially
+                'front',
+                1000,
+                'front-end',
+                1000,
+                'front-end developer',
+                1000,
+
+              ]}
+              speed={50}
+              style={{ fontStyle: 'italic' }}
+              className='profesion'
+              repeat={Infinity}
+            />
           </div>
           <div className="navigation">
             <p onClick={() => handleNavLinkClick('about')} ref={(el) => (navigationRefs.current[0] = el)}>About Me</p>
