@@ -8,6 +8,7 @@ import Description from './Description';
 import Contact from './Contact';
 import { TypeAnimation } from 'react-type-animation';
 
+
 function AboutMe() {
   const [activeTab, setActiveTab] = useState('about');
   const [isNavOpen, setIsNavOpen] = useState(true);
@@ -52,9 +53,25 @@ function AboutMe() {
       .to('.navigation', { visibility: 'visible', y: '20px' })
       .to('.content', { visibility: 'visible', y: '20px' })
 
-  }, [isNavOpen]);
+    navigationRefs.current.forEach((navItem) => {
+      if (navItem) {
+        navItem.addEventListener('mouseenter', () => gsap.to(navItem, { scale: 1.2, duration: 0.3 }));
+        navItem.addEventListener('mouseleave', () => gsap.to(navItem, { scale: 1, duration: 0.3 }));
+      }
+    });
+
+    return () => {
+      navigationRefs.current.forEach((navItem) => {
+        if (navItem) {
+          navItem.removeEventListener('mouseenter', () => gsap.to(navItem, { scale: 1.2, duration: 0.3 }));
+          navItem.removeEventListener('mouseleave', () => gsap.to(navItem, { scale: 1, duration: 0.3 }));
+        }
+      });
+    };
+  }, []);
 
   const handleNavLinkClick = (tab) => {
+    setIsNavOpen(false);
     setActiveTab(tab);
     activeTabRef.current = tab;
     console.log("handleNavLinkClick called, tab:", tab);
@@ -76,18 +93,20 @@ function AboutMe() {
           <div className={`line ${isNavOpen ? 'open' : ''}`}></div>
         </div>
 
-        <div className={`tab-list ${isNavOpen ? 'active' : ''}`}>
+        <div className={`tab-list ${isNavOpen ? 'active' : ''}`} key={isNavOpen ? 'open' : 'closed'}>
           <div className='information'>
             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Placeholder" />
             <p>Felix Tjong</p>
             <TypeAnimation
               sequence={[
+                // Same substring at the start will only be typed once, initially
                 'front',
                 1000,
                 'front-end',
                 1000,
                 'front-end developer',
                 1000,
+
               ]}
               speed={50}
               style={{ fontStyle: 'italic' }}
@@ -96,41 +115,11 @@ function AboutMe() {
             />
           </div>
           <div className="navigation">
-            <a
-              onClick={() => handleNavLinkClick('about')}
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-            >
-              About Me
-            </a>
-            <a
-              onClick={() => handleNavLinkClick('skills')}
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-            >
-              Skills
-            </a>
-            <a
-              onClick={() => handleNavLinkClick('education')}
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-            >
-              Education
-            </a>
-            <a
-              onClick={() => handleNavLinkClick('contact')}
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-            >
-              Contact
-            </a>
-            <a
-              onClick={() => handleNavLinkClick('projects')}
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-            >
-              Project Lists
-            </a>
+            <p onClick={() => handleNavLinkClick('about')} ref={(el) => (navigationRefs.current[0] = el)}>About Me</p>
+            <p onClick={() => handleNavLinkClick('skills')} ref={(el) => (navigationRefs.current[1] = el)}>Skills</p>
+            <p onClick={() => handleNavLinkClick('education')} ref={(el) => (navigationRefs.current[2] = el)}>Education</p>
+            <p onClick={() => handleNavLinkClick('contact')} ref={(el) => (navigationRefs.current[3] = el)}>Contact</p>
+            <p onClick={() => handleNavLinkClick('projects')} ref={(el) => (navigationRefs.current[4] = el)}>Project Lists</p>
           </div>
         </div>
 
