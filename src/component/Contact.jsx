@@ -4,63 +4,72 @@ import gsap from 'gsap';
 import '../css/Contact.css';
 
 function Contact() {
-  const wrapperRef = useRef(null);
+  const gmailRef = React.useRef(null);
+  const whatsappRef = React.useRef(null);
 
-  const handleMouseEnter = () => {
-    gsap.to(wrapperRef.current, {
+  const handleMouseEnter = (ref) => {
+    gsap.to(ref.current, {
       scale: 1.1,
       duration: 0.3,
       ease: 'power2.out',
-    })
-  }
+    });
+  };
 
-  const handleMouseLeave = () => {
-    gsap.to(wrapperRef.current, {
+  const handleMouseLeave = (ref) => {
+    gsap.to(ref.current, {
       scale: 1,
       duration: 0.3,
       ease: 'power2.out',
-    })
-  }
-
+    });
+  };
 
   useEffect(() => {
-    gsap.from(wrapperRef, {
+    gsap.from(gmailRef.current, {
       y: 0,
       duration: 0.8,
       ease: 'power3.out',
     });
-    gsap.to(wrapperRef, {
+    gsap.to(gmailRef.current, {
+      y: 10,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+
+    gsap.from(whatsappRef.current, {
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+    gsap.to(whatsappRef.current, {
       y: 10,
       duration: 0.8,
       ease: 'power3.out',
     });
   }, []);
 
-
-  
   return (
     <div className='contact-container'>
       <h1>Contact</h1>
       <p>This is some of my social media that u can use to contact me</p>
       <div className="contact-wrapper hoveranimation">
         <div
-          ref={wrapperRef}
+          ref={gmailRef}
           className='contact-info-wrapper'
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => handleMouseEnter(gmailRef)}
+          onMouseLeave={() => handleMouseLeave(gmailRef)}
         >
           <a href="mailto:felixlix537@gmail.com">
             <img src="/gmail.png" alt="Gmail" className="contact-image" />
           </a>
         </div>
         <div
-          ref={wrapperRef}
+          ref={whatsappRef}
           className='contact-info-wrapper'
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => handleMouseEnter(whatsappRef)}
+          onMouseLeave={() => handleMouseLeave(whatsappRef)}
         >
           <a href="https://wa.me/087809276292">
-            <img src="/whatsapp.png" alt="Gmail" className="contact-image" />
+            <img src="/whatsapp.png" alt="Whatsapp" className="contact-image" />
           </a>
         </div>
       </div>

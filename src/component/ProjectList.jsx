@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import '../css/swiper.css';
+import '../css/projectlist.css'
 import { Pagination } from 'swiper/modules';
 import adviceGenImage from '../assets/advice-gen.png';
 import movieCollection from '../assets/movie-collection.png';
@@ -44,9 +45,9 @@ function ProjectList() {
         ref={swiperRef}
         slidesPerView={3}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
         breakpoints={{
           320: {
             slidesPerView: 1,

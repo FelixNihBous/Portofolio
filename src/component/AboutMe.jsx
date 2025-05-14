@@ -68,7 +68,40 @@ function AboutMe() {
         }
       });
     };
+  }, []); 
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isAndroid, setIsAndroid] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(userAgent)) {
+      setIsAndroid(true);
+    }
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      gsap.set('.tab-list', { clearProps: 'all' });
+      return;
+    }
+    if (isAndroid) {
+      gsap.set('.tab-list', { scale: isNavOpen ? 1 : 0, opacity: isNavOpen ? 1 : 0, pointerEvents: isNavOpen ? 'auto' : 'none' });
+      return;
+    }
+    if (isNavOpen) {
+      gsap.to('.tab-list', { scale: 1, opacity: 1, duration: 0.5, ease: 'power2.out', pointerEvents: 'auto' });
+    } else {
+      gsap.to('.tab-list', { scale: 0, opacity: 0, duration: 0.5, ease: 'power2.in', pointerEvents: 'none' });
+    }
+  }, [isNavOpen, isMobile, isAndroid]);
 
   const handleNavLinkClick = (tab) => {
     setIsNavOpen(false);
@@ -93,7 +126,7 @@ function AboutMe() {
           <div className={`line ${isNavOpen ? 'open' : ''}`}></div>
         </div>
 
-        <div className={`tab-list ${isNavOpen ? 'active' : ''}`} key={isNavOpen ? 'open' : 'closed'}>
+          <div className={`tab-list ${isNavOpen ? 'active' : ''}`}>
           <div className='information'>
             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Placeholder" />
             <p>Felix Tjong</p>
