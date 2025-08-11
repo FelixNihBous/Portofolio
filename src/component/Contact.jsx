@@ -68,7 +68,7 @@ function Contact() {
           onMouseEnter={() => handleMouseEnter(whatsappRef)}
           onMouseLeave={() => handleMouseLeave(whatsappRef)}
         >
-          <a href="https://wa.me/087809276292">
+          <a href="https://wa.me/+6287809276292">
             <img src="/whatsapp.png" alt="Whatsapp" className="contact-image" />
           </a>
         </div>
